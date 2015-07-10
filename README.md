@@ -1,10 +1,10 @@
 # lezhincomics_crawling_project
 
-리드미 겸 주석파일
+# 리드미 겸 주석파일
 
 레진코믹스의 만화 이미지 url형식은 다음과 같다. 이는 레진코믹스 만화창에서 개발자 도구 등으로 쉽게 확인할 수 있다.
 
-url = http://2cdn.lezhin.com/episodes/#{만화 제목}/#{에피소드 번호}/contents/#{해당 에피소드 이미지 번호}?access_token=#{액세스 토큰}
+url = http://2cdn.lezhin.com/episodes/{만화 제목}/{에피소드 번호}/contents/{해당 에피소드 이미지 번호}?access_token={액세스 토큰}
 
 oauth를 사용하는 레진 코믹스 특성상, 유효한 #{액세스 토큰}값을 알고있으면 해당 계정의 주인처럼 행세하는 것이 가능하다. 물론, 레진코믹스에는 어느정도 무료로 제공되는 만화도 있으므로, 자신의 계정의 #{액세스 토큰}을 사용해도 무방하다. 긴 말 않겠다. 가장 중요한것은, #{액세스 토큰}이다. 별도의 인증 과정 없이 #{액세스 토큰}만 있다면 해당 만화 이미지에 해당하는 url을 입력하여 이미지에 접근할 수 있다.
 
@@ -16,7 +16,7 @@ access_token=00000000-0000-0000-0000-00000000000c9&purchased=true
 
 여기에 for문등으로 #{만화 제목}, #{에피소드 번호}, #{해당 에피소드 이미지 번호}를 잘 조작하면 해당 이미지에 접근할 수 있다. (e-hentai.org처럼 #{해당 에피소드 이미지 번호}를 랜덤해쉬값으로 지정해 놓은게 아니라 이미지 차례대로 정수값으로 되어있기 때문에 가능하다.)
 
-그리고, 해당 에피소드의 이미지파일을 긁어올때 #{해당 에피소드에 포함된 이미지의 총 개수}등의 추가 정보가 필요하다. SQL Injection（엄밀히 말하면 아니다. 이렇게 말하기도 부끄러워질 정도이다.)으로 얻을 수 있다.
+# 그리고, 해당 에피소드의 이미지파일을 긁어올때 #{해당 에피소드에 포함된 이미지의 총 개수}등의 추가 정보가 필요하다. SQL Injection（엄밀히 말하면 아니다. 이렇게 말하기도 부끄러워질 정도이다.)으로 얻을 수 있다.
 
 http://2cdn.lezhin.com/episodes/#{만화 제목}/;/contents/#{해당 에피소드 이미지 번호}?access_token=#{액세스 토큰}
 
@@ -28,7 +28,7 @@ http://2cdn.lezhin.com/episodes/#{만화 제목}/;/contents/#{해당 에피소�
 
 lezhincrawl.py의 get_episode_info()는 바로 이 json파일을 파싱하는 함수이다. "cut"과 "name"을 담은 리스트들을 딕셔너리에 담아 return한다.
 
-			중요 - lezhincrawl.py와 같은 디렉토리내에 Injection으로 얻은 json 내용을 복사하여 comicID.json와 같은 형식으로 저장해두어야한다.
+#			중요 - lezhincrawl.py와 같은 디렉토리내에 Injection으로 얻은 json 내용을 복사하여 comicID.json와 같은 형식으로 저장해두어야한다.
 
 
 get_image_links()는 get_episode_info()를 토대로 다운로드받을 이미지들의 링크를 for문으로 생성하고, 리스트에 담아 download_images()로 넘기는 함수이다.
